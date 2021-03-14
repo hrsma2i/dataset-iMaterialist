@@ -590,7 +590,7 @@ python-versions = "*"
 name = "pillow"
 version = "8.1.2"
 description = "Python Imaging Library (Fork)"
-category = "dev"
+category = "main"
 optional = false
 python-versions = ">=3.6"
 
@@ -774,6 +774,25 @@ security = ["pyOpenSSL (>=0.14)", "cryptography (>=1.3.4)"]
 socks = ["PySocks (>=1.5.6,!=1.5.7)", "win-inet-pton"]
 
 [[package]]
+name = "segmentation"
+version = "0.1.0"
+description = ""
+category = "main"
+optional = false
+python-versions = "^3.7"
+develop = false
+
+[package.extras]
+fastscnn = ["torch (==1.6.0)", "torchvision (==0.7.0)", "mmcv-full (>=1.2.7,<2.0.0)", "mmsegmentation (>=0.11.0,<0.12.0)", "typer (>=0.3.2,<0.4.0)"]
+vis = ["numpy (>=1.20.1,<2.0.0)", "matplotlib (>=3.3.4,<4.0.0)"]
+
+[package.source]
+type = "git"
+url = "https://github.com/hrsma2i/segmentation.git"
+reference = "main"
+resolved_reference = "4077ce10e1679b52d4cd85bd8095586bd0a79651"
+
+[[package]]
 name = "send2trash"
 version = "1.5.0"
 description = "Send file to trash natively under Mac OS X, Windows and Linux."
@@ -899,7 +918,7 @@ notebook = ">=4.4.1"
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.8"
-content-hash = "f0e0ce85c3b008e0765e7661a23bc60de958790820fa1b2b34a806ad4ddeb580"
+content-hash = "afecfd954c24e7af0bcbcbdd8f9ae9660bf2e8986bf37701c0279d71ce4914ab"
 
 [metadata.files]
 appnope = [
@@ -1399,6 +1418,7 @@ requests = [
     {file = "requests-2.25.1-py2.py3-none-any.whl", hash = "sha256:c210084e36a42ae6b9219e00e48287def368a26d03a048ddad7bfee44f75871e"},
     {file = "requests-2.25.1.tar.gz", hash = "sha256:27973dd4a904a4f13b263a19c866c13b92a39ed1c964655f025f3f8d3d75b804"},
 ]
+segmentation = []
 send2trash = [
     {file = "Send2Trash-1.5.0-py3-none-any.whl", hash = "sha256:f1691922577b6fa12821234aeb57599d887c4900b9ca537948d2dac34aea888b"},
     {file = "Send2Trash-1.5.0.tar.gz", hash = "sha256:60001cc07d707fe247c94f74ca6ac0d3255aabcb930529690897ca2a39db28b2"},
