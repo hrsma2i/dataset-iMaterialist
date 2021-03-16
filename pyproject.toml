@@ -9,6 +9,7 @@ python = "^3.8"
 kaggle = "^1.5.12"
 Pillow = "^8.1.2"
 segmentation = {git = "https://github.com/hrsma2i/segmentation.git", rev = "main"}
+typer = "^0.3.2"
 
 [tool.poetry.dev-dependencies]
 numpy = "^1.20.1"
