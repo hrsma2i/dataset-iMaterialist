@@ -1,6 +1,12 @@
-raw
-main
-tiny
+raw/*
+!raw/classes.txt
+!raw/palette.txt
+!raw/images_train.txt
+!raw/images_val.txt
+tiny/*
+!tiny/classes.txt
+!tiny/palette.txt
+!tiny/label_descriptions.json
 
 ### https://raw.github.com/github/gitignore/218a941be92679ce67d0484547e3e142b2f5f6f0/Python.gitignore
 
