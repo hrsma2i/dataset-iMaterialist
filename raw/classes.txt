@@ -1,3 +1,4 @@
+background
 shirt|blouse
 top|t-shirt|sweatshirt
 sweater
@@ -25,4 +26,3 @@ shoe
 bag|wallet
 scarf
 umbrella
-background

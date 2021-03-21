@@ -33,14 +33,24 @@ def rle2png(
 ):
     with open(meta_json) as f:
         meta = json.load(f)
-    df_ctg = pd.DataFrame(meta["categories"]).set_index("id")
+    df_ctg = pd.DataFrame(meta["categories"])
+    # Shift category_id by 1 bacause background's id is 0
+    df_ctg["id"] += 1
     # Remove some categories
     df_ctg = df_ctg[
         ~df_ctg["supercategory"].isin(["garment parts", "closures", "decorations"])
     ]
+    df_ctg = df_ctg.set_index("id")
+    # Append `background` to the last row
+    df_ctg.loc[0] = {"name": "background", "supercategory": "background", "level": 2}
+    # Move `background` to the first row
+    df_ctg = df_ctg.sort_index()
 
     df = pd.read_csv(ann_csv)
-    df["category_id"] = df["ClassId"].apply(lambda c: c.split("_")[0]).astype("int32")
+    # Shift category_id by 1 bacause background's id is 0
+    df["category_id"] = 1 + df["ClassId"].apply(lambda c: c.split("_")[0]).astype(
+        "int32"
+    )
     df = df[df["category_id"].isin(df_ctg.index)]
     df = df.groupby("ImageId").agg(list).reset_index()
 
