@@ -9,12 +9,6 @@
 
 ##  Setup
 
-Download images and annotations from Kaggle to `./raw` by the following command.
-
-```sh
-./scripts/download.sh
-```
-
 Install Python libraries via Poetry by the following command.
 
 ```sh
@@ -22,6 +16,14 @@ pip install poetry
 poetry install
 poetry shell
 ```
+
+Download images and annotations from Kaggle to `./raw` by the following command.
+(Install `kaggel` CLI via pip according to the above instruction that is needed for this script.)
+
+```sh
+./scripts/download.sh
+```
+
 
 Transform Kaggle RLE annotations to PNGs by the following command. This takes some hours.
 
