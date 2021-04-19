@@ -5,11 +5,11 @@ REPOSITORY_ROOT="$(
 )"
 
 RAW_DIR="$REPOSITORY_ROOT"/raw
-ZIP_FILENAME=imaterialist-fashion-2019-FGVC6.zip
-ZIP_FILE="$RAW_DIR"/$ZIP_FILENAME
+COMPETISION=imaterialist-fashion-2020-fgvc7
+ZIP_FILE="$RAW_DIR"/${COMPETISION}.zip
 
 if [ ! -e "$ZIP_FILE" ]; then
-    kaggle competitions download -c imaterialist-fashion-2019-FGVC6 -p "$RAW_DIR"
+    kaggle competitions download -c $COMPETISION -p "$RAW_DIR"
 fi
 
 unzip "$ZIP_FILE" -d "$RAW_DIR"
