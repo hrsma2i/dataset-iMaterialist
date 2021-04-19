@@ -13,3 +13,10 @@ if [ ! -e "$ZIP_FILE" ]; then
 fi
 
 unzip "$ZIP_FILE" -d "$RAW_DIR"
+
+# Download COCO format annotations
+# c.f., https://github.com/cvdfoundation/fashionpedia#annotations
+curl -o "$RAW_DIR"/instances_attributes_train2020.json \
+    https://s3.amazonaws.com/ifashionist-dataset/annotations/instances_attributes_train2020.json
+curl -o "$RAW_DIR"/instances_attributes_val2020.json \
+    https://s3.amazonaws.com/ifashionist-dataset/annotations/instances_attributes_val2020.json
