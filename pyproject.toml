@@ -8,7 +8,7 @@ authors = ["hrsma2i <hrs.ma2i@gmail.com>"]
 python = "^3.7.1"
 kaggle = "^1.5.12"
 Pillow = "^8.1.2"
-segmentation = {git = "https://github.com/hrsma2i/segmentation.git", rev = "8fd8912917385116941b781c8564edc6d38f1c25"}
+segmentation = {git = "https://github.com/hrsma2i/segmentation.git", rev = "main"}
 typer = "^0.3.2"
 
 [tool.poetry.dev-dependencies]

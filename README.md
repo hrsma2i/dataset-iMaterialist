@@ -5,6 +5,8 @@
 - [iMaterialist 2020 Dataset Setup Scripts](#imaterialist-2020-dataset-setup-scripts)
     - [Setup](#setup)
     - [Annotation Format](#annotation-format)
+        - [Kaggle Format](#kaggle-format)
+        - [COCO Format](#coco-format)
     - [vs ModaNet](#vs-modanet)
     - [vs iMaterialist 2019](#vs-imaterialist-2019)
 
@@ -34,9 +36,10 @@ If you want a tiny dataset for debugging, you can set it up to `./tiny` by the f
 ```
 ## Annotation Format
 
-The column `EncodedPixels` in `raw/train.csv` is annotations.
-The annotation format is RLE which is not *COCO* format but an unique format to Kaggle.
+### Kaggle Format
 
+The column `EncodedPixels` in `raw/train.csv` is annotations.
+The annotation format is RLE which is **NOT** *COCO* format but an unique format to Kaggle.
 
 You can transform Kaggle RLE annotations to PNGs by the following command. This takes some hours.
 
@@ -44,8 +47,13 @@ You can transform Kaggle RLE annotations to PNGs by the following command. This 
 python ./imaterialist/cli/rle2png.py
 ```
 
+### COCO Format
 
 *COCO* format annotations are also provided as `raw/instances_attributes_{train|val}2020.json`.
+
+**warning**
+- Image sizes in the JSON file are different from the actual image sizes. You must resizes images or annotations.
+- Two types of annotations are mixed together; `polygons` or `RLE`. c.f., https://github.com/cvdfoundation/fashionpedia/issues/2
 
 ## vs ModaNet
 
