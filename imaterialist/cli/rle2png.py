@@ -7,7 +7,7 @@ import pandas as pd
 import typer
 from segmentation.transforms import masks_to_segmap, segmap_to_pil
 
-from imaterialist.transforms import rle_to_mask
+from imaterialist.transforms import rle_to_mask, segmap_to_gray
 
 
 PROJECT_ROOT = Path(__file__).parents[2]
@@ -26,9 +26,13 @@ def rle2png(
         PROJECT_ROOT / "raw/label_descriptions.json",
         help="a metadata JSON file",
     ),
-    out_dir: Path = typer.Option(
+    ann_out_dir: Path = typer.Option(
         PROJECT_ROOT / "raw/ann",
         help="output PNG annotations directory",
+    ),
+    map_out_dir: Path = typer.Option(
+        PROJECT_ROOT / "raw/map",
+        help="output PNG segmap directory",
     ),
 ):
     with open(meta_json) as f:
@@ -52,7 +56,8 @@ def rle2png(
     df = df[df["category_id"].isin(df_ctg.index)]
     df = df.groupby("ImageId").agg(list).reset_index()
 
-    out_dir.mkdir(parents=True, exist_ok=True)
+    ann_out_dir.mkdir(parents=True, exist_ok=True)
+    map_out_dir.mkdir(parents=True, exist_ok=True)
     counter = Counter(len(df))
     df.apply(
         lambda row: save_png_from_rle(
@@ -62,7 +67,8 @@ def rle2png(
             widths=row["Width"],
             category_ids=row["category_id"],
             all_category_ids=df_ctg.index,
-            out_dir=out_dir,
+            ann_out_dir=ann_out_dir,
+            map_out_dir=map_out_dir,
             counter=counter,
         ),
         axis=1,
@@ -86,7 +92,8 @@ def save_png_from_rle(
     widths: List[int],
     category_ids: List[int],
     all_category_ids: np.ndarray,
-    out_dir: Path,
+    ann_out_dir: Path,
+    map_out_dir: Path,
     counter: Counter,
 ):
     masks = np.stack(
@@ -98,8 +105,11 @@ def save_png_from_rle(
     segmap = masks_to_segmap(masks, np.array(category_ids))
     # segmap: (height, width)
 
+    segmap_gray = segmap_to_gray(segmap)
+    segmap_gray.save(map_out_dir / (image_id + ".png"))
+
     png = segmap_to_pil(segmap, all_category_ids)
-    png.save(out_dir / image_id.replace("jpg", "png"))
+    png.save(ann_out_dir / (image_id + ".png"))
 
     counter.i += 1
     print(f"{counter.per}[%]={counter.i}/{counter.total}")
