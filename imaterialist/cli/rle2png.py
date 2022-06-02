@@ -48,9 +48,7 @@ def rle2png(
 
     df = pd.read_csv(ann_csv)
     # Shift category_id by 1 bacause background's id is 0
-    df["category_id"] = 1 + df["ClassId"].apply(lambda c: c.split("_")[0]).astype(
-        "int32"
-    )
+    df["category_id"] = 1 + df["ClassId"].astype("int32")
     df = df[df["category_id"].isin(df_ctg.index)]
     df = df.groupby("ImageId").agg(list).reset_index()
 
