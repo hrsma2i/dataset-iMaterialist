@@ -1,4 +1,5 @@
 import numpy as np
+from PIL import Image
 
 
 def rle_to_mask(rle: str, height: int, width: int) -> np.ndarray:
@@ -21,3 +22,17 @@ def rle_to_mask(rle: str, height: int, width: int) -> np.ndarray:
     for lo, hi in zip(starts, ends):
         img[lo:hi] = 1
     return img.reshape((width, height)).T
+
+
+def segmap_to_gray(segmap: np.ndarray) -> Image.Image:
+    """Convert a segmentation map to an image
+    Args:
+        segmap    (np.ndarray; C^(height, width)): a segmentation map
+        C: {0, 1, ..., #categories-1}
+            0: must be background
+    Returns:
+        Image.Image: An image that each pixel value is a class ID
+    """
+
+    img = Image.fromarray(segmap.astype(np.uint8)).convert("L")
+    return img
