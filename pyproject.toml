@@ -14,6 +14,7 @@ Pillow = "^9.2.0"
 pycocotools = "^2.0.4"
 typer = "^0.6.1"
 segmentation = {git = "https://github.com/hrsma2i/segmentation.git", rev = "cfc1670021"}
+tqdm = "^4.64.1"
 
 [tool.poetry.dev-dependencies]
 # jupyter = "^1.0.0"
