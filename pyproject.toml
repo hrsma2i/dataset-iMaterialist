@@ -3,20 +3,25 @@ name = "imaterialist"
 version = "0.1.0"
 description = ""
 authors = ["hrsma2i <hrs.ma2i@gmail.com>"]
+packages = [{include = "imaterialist"}]
 
 [tool.poetry.dependencies]
-python = "^3.7.1"
+python = "^3.9.6"
 kaggle = "^1.5.12"
-Pillow = "^8.1.2"
-segmentation = {git = "https://github.com/hrsma2i/segmentation.git", rev = "cfc1670021"}
-typer = "^0.3.2"
+numpy = "^1.23.3"
+pandas = "^1.4.4"
+Pillow = "^9.2.0"
 pycocotools = "^2.0.4"
+typer = "^0.6.1"
+segmentation = {git = "https://github.com/hrsma2i/segmentation.git", rev = "cfc1670021"}
 
 [tool.poetry.dev-dependencies]
-numpy = "^1.20.1"
-pandas = "^1.2.3"
-matplotlib = "^3.3.4"
-jupyter = "^1.0.0"
+# jupyter = "^1.0.0"
+flake8 = "^5.0.4"
+black = "^22.8.0"
+mypy = "^0.971"
+pytest = "^7.1.3"
+matplotlib = "^3.5.3"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
