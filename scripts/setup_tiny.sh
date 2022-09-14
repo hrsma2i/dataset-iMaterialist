@@ -12,7 +12,7 @@ mkdir -p "$TINY_DIR"
 
 # sample annotations
 # head -n $N_SAMPLES "$RAW_DIR"/train.csv >"$TINY_DIR"/train.csv
-ANNOTATION_FILE_NAME=instances_attributes_train2020.json
+ANNOTATION_FILE_NAME=instances_attributes_train2020_shifted.json
 python imaterialist/sample_annotations.py \
     raw/$ANNOTATION_FILE_NAME \
     tiny/$ANNOTATION_FILE_NAME
